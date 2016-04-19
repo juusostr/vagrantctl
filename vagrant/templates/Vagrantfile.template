@@ -27,7 +27,18 @@ Vagrant.configure(2) do |config|
       servconf.ssh.private_key_path = server['private_keys']
       servconf.ssh.insert_key = false
 
-      servconf.vm.provision :shell, inline: "apt-get -y update && apt-get -y upgrade"
+      server['provisions'].each do |provision|
+        case provision['type']
+          when 'file'
+            servconf.vm.provision :file, source: provision['source'], destination: provision['destination']
+          when 'shell'
+            if provision['inline']
+              servconf.vm.provision :shell, inline: provision['inline'], privileged: provision['privileged'] | true
+            else
+              servconf.vm.provision :shell, path: provision['path'], privileged: provision['privileged'] | true
+            end
+        end
+      end
     end
   end
 

@@ -11,3 +11,6 @@
 #     - ~/.vagrant.d/insecure_private_key
 #   forwarded_ports:
 #     - '80:8080'
+#   provisions:
+#     - type: shell
+#       inline: "apt-get update && apt-get -y upgrade"
