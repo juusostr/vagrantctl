@@ -17,7 +17,7 @@ run_command() {
 
 prompt_for_okay() {
     while true; do
-        read -p "Running command $@. Are you sure you want to do this? [Y/N]" yn
+        read -p "Running command $@. Are you sure you want to do this? [Y/N] " yn
         case $yn in
             [Yy]* )
                 echo "Okay. Running."
