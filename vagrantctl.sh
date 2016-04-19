@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Constants
-
-ENV_DIR="./envs/$2"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ENV_DIR="$DIR/envs/$2"
 
 # Methods
 
@@ -55,7 +55,7 @@ key="$1"
 case $key in
     init)
         echo "Initializing new environment $2"
-        ./lib/create_new_vagrant_env.sh "$2"
+        $DIR/lib/create_new_vagrant_env.sh "$2"
         run_command $EDITOR vagrant_vms.yml
     ;;
     edit)

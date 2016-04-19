@@ -1,8 +1,9 @@
 #!/bin/bash
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 env_name=$1
-env_folder=./envs
-template_folder=./templates
+env_folder=$DIR/../envs
+template_folder=$DIR/../templates
 
 if [ ! -d $env_folder/$env_name ]; then
     mkdir -p $env_folder/$env_name
