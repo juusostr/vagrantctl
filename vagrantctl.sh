@@ -10,8 +10,7 @@ run_command() {
     if [ ! -d $ENV_DIR ]; then
         echo "No environment $ENV_DIR found."
     else
-        cd $ENV_DIR && $@
-        cd -
+        ( cd $ENV_DIR && $@ )
     fi
 }
 
