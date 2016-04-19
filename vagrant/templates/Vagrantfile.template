@@ -1,0 +1,34 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require 'yaml'
+
+servers = YAML.load_file('./vagrant_vms.yml')
+
+Vagrant.configure(2) do |config|
+
+  servers.each do |server|
+    config.vm.define server['name'] do |servconf|
+      servconf.vm.box = server['box']
+      servconf.vm.provider server['provider'] do |provider|
+        provider.name = server['name']
+        provider.cpus = server['cpu']
+        provider.memory = server['memory']
+      end
+
+      servconf.vm.network :private_network, ip: server['private_ip']
+      servconf.ssh.port = server['ssh_port']
+      
+      server['forwarded_ports'].each do |ports|
+        guest, host = ports.split(':')
+        servconf.vm.network :forwarded_port, guest: guest, host: host
+      end
+
+      servconf.ssh.private_key_path = server['private_keys']
+      servconf.ssh.insert_key = false
+
+      servconf.vm.provision :shell, inline: "apt-get -y update && apt-get -y upgrade"
+    end
+  end
+
+end

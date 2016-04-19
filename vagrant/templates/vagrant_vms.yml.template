@@ -1,0 +1,13 @@
+---
+# Example settings. Uncomment these.
+# - name: default 
+#   box: debian/jessie64
+#   provider: virtualbox
+#   cpu: 1
+#   memory: 2048
+#   private_ip: 192.168.111.223
+#   ssh_port: 2222
+#   private_keys:
+#     - ~/.vagrant.d/insecure_private_key
+#   forwarded_ports:
+#     - '80:8080'
