@@ -12,7 +12,8 @@ Clone this repository/Copy these files to the root of your repository.
 
 ## Usage
 
-Usage: ./vagrantctl.sh <option> <environment>
+```
+./vagrantctl.sh <option> <environment>
 
 up - Starts the VMs in the environment (vagrant up)
 halt - Stops the VMs in the environment (vagrant halt)
@@ -22,3 +23,4 @@ global-status - Same as vagrant global-status
 destroy - Destroys the VMs in the environment. NOTE: Does not destroy the env directory.
 complete-destroy - Destroys the whole environment (VMs AND directory). Use carefully.
 help - Prints this usage message
+```
