@@ -38,14 +38,15 @@ prompt_for_okay() {
 print_usage() {
 echo "Usage: ./vagrantctl.sh <option> <environment>"
 echo
-echo "up - Starts the VMs in the environment (vagrant up)"
-echo "halt - Stops the VMs in the environment (vagrant halt)"
+echo "up - Starts the VMs in the environment (vagrant up)."
+echo "halt - Stops the VMs in the environment (vagrant halt)."
 echo "init - Initializes the environment."
 echo "status - Shows the status of the VMs in the environment."
-echo "global-status - Same as vagrant global-status"
+echo "global-status - Same as vagrant global-status."
 echo "destroy - Destroys the VMs in the environment. NOTE: Does not destroy the env directory."
 echo "complete-destroy - Destroys the whole environment (VMs AND directory). Use carefully."
-echo "help - Prints this usage message"
+echo "help - Prints this usage message."
+echo "list - List all environments."
 }
 
 # Main
@@ -82,6 +83,14 @@ case $key in
     ;;
     help)
         print_usage
+    ;;
+    list)
+        for i in $(ls $ENV_DIR)
+        do
+            if [[ $i != *"README.md"* ]]; then
+                echo $i
+            fi
+        done
     ;;
     *)
         print_usage
