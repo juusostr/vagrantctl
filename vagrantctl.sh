@@ -37,15 +37,16 @@ prompt_for_okay() {
 print_usage() {
 echo "Usage: ./vagrantctl.sh <option> <environment>"
 echo
-echo "up - Starts the VMs in the environment (vagrant up)."
-echo "halt - Stops the VMs in the environment (vagrant halt)."
-echo "init - Initializes the environment."
-echo "status - Shows the status of the VMs in the environment."
-echo "global-status - Same as vagrant global-status."
-echo "destroy - Destroys the VMs in the environment. NOTE: Does not destroy the env directory."
-echo "complete-destroy - Destroys the whole environment (VMs AND directory). Use carefully."
-echo "help - Prints this usage message."
-echo "list - List all environments."
+echo "up                - Starts the VMs in the environment (vagrant up)."
+echo "halt              - Stops the VMs in the environment (vagrant halt)."
+echo "init              - Initializes the environment."
+echo "status            - Shows the status of the VMs in the environment."
+echo "global-status     - Same as vagrant global-status."
+echo "destroy           - Destroys the VMs in the environment. NOTE: Does not destroy the env directory."
+echo "complete-destroy  - Destroys the whole environment (VMs AND directory). Use carefully."
+echo "help              - Prints this usage message."
+echo "list              - List all environments."
+echo "ssh <vm>          - Opens up an SSH connection to a VM."
 }
 
 # Main
@@ -90,6 +91,9 @@ case $key in
                 echo $i
             fi
         done
+    ;;
+    ssh)
+        run_command vagrant ssh "$3"
     ;;
     *)
         print_usage
