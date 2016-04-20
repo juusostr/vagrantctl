@@ -37,12 +37,12 @@ prompt_for_okay() {
 print_usage() {
 echo "Usage: ./vagrantctl.sh <option> <environment>"
 echo
-echo "up                - Starts the VMs in the environment (vagrant up)."
-echo "halt              - Stops the VMs in the environment (vagrant halt)."
+echo "up [vm]           - Starts the VMs in the environment (vagrant up)."
+echo "halt [vm]         - Stops the VMs in the environment (vagrant halt)."
 echo "init              - Initializes the environment."
-echo "status            - Shows the status of the VMs in the environment."
+echo "status [vm]       - Shows the status of the VMs in the environment."
 echo "global-status     - Same as vagrant global-status."
-echo "destroy           - Destroys the VMs in the environment. NOTE: Does not destroy the env directory."
+echo "destroy [vm]      - Destroys the VMs in the environment. NOTE: Does not destroy the env directory."
 echo "complete-destroy  - Destroys the whole environment (VMs AND directory). Use carefully."
 echo "help              - Prints this usage message."
 echo "list              - List all environments."
@@ -63,19 +63,19 @@ case $key in
         run_command $EDITOR vagrant_vms.yml
     ;;
     up)
-        run_command vagrant up
+        run_command vagrant up "$3"
     ;;
     status)
-        run_command vagrant status
+        run_command vagrant status "$3"
     ;;
     global-status)
         vagrant global-status
     ;;
     halt)
-        run_command vagrant halt
+        run_command vagrant halt "$3"
     ;;
     destroy)
-        run_command vagrant destroy
+        run_command vagrant destroy "$3"
     ;;
     complete-destroy)
         run_command vagrant destroy
